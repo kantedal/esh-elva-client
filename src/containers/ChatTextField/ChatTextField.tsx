@@ -4,6 +4,7 @@ import ChatInput from './components/ChatInput'
 import ChatTextFieldBox from './components/ChatTextFieldBox'
 import ChatSendButton from './components/ChatSendButton'
 import ChatHintText from './components/ChatHintText'
+import ChatSpeechButton from './components/ChatSpeechButton'
 import {RootState} from '../../reducers/index'
 import * as moment from 'moment'
 import {connect} from 'react-redux'
@@ -37,21 +38,14 @@ class ChatTextField extends React.Component<ChatTextField.Props, {}> {
         userMessage: true,
         message: inputValue,
       })
-
-      // setTimeout(() => {
-      //   actions.sendChatMessage({
-      //     timeSent: moment().valueOf(),
-      //     userMessage: false,
-      //     message: 'Det var en dum fråga',
-      //   })
-      // }, 1000)
     }
 
     return (
       <ChatTextFieldBox activeChat={activeChat}>
         <form onSubmit={onSendSubmit}>
+          <ChatSpeechButton/>
           <ChatHintText activeChat={activeChat} inputValue={inputValue} />
-          <ChatInput inputValue={inputValue} onChange={onInputChange}/>
+          <ChatInput inputFocus={actions.chatInputFocus} inputValue={inputValue} onChange={onInputChange}/>
           <ChatSendButton inputValue={inputValue} />
         </form>
       </ChatTextFieldBox>

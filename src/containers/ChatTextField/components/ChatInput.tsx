@@ -3,23 +3,26 @@ import styled from 'styled-components'
 
 interface ChatInputProps extends React.HTMLProps<HTMLInputElement> {
   inputValue: string
+  inputFocus: (focused: boolean) => void
 }
 
-const ChatInput: React.SFC<ChatInputProps> = ({inputValue, ...props}) => {
-  const inputRefAssignment = (input) => inputValue === '' && input && input.blur()
-  return <input {...props} value={inputValue} />
+const ChatInput: React.SFC<ChatInputProps> = ({inputValue, inputFocus, ...props}) => {
+  const onKeyboardFocus = (e) => inputFocus(true)
+  const onKeyboardBlur = (e) => inputFocus(false)
+  return <input onFocus={onKeyboardFocus} onBlur={onKeyboardBlur} {...props} value={inputValue} />
 }
 
 // language=SCSS
 const StyledChatInput = styled(ChatInput)`
   & {
-    width: calc(100% - 20px);
-    height: ${(props: ChatInputProps) => '50px'};
+    width: calc(100% - 80px);
+    height: ${(props: ChatInputProps) => '40px'};
     outline: none;
     border: 0px;
-    font-size: 17px;
-    padding-left: 10px;
-    padding-right: 10px;
+    background: transparent;
+    font-size: 16px;
+    padding-left: 40px;
+    padding-right: 40px;
     ::-webkit-input-placeholder {
        text-align: center;
        font-size: 20px;

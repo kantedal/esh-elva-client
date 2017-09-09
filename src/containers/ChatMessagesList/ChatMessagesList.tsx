@@ -1,18 +1,22 @@
-import * as React from 'react';
-import * as ChatMessagesListActions from './chatMessagesListActions';
-import {RootState} from '../../reducers/index';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {ChatMessage} from '../../models/ChatMessage';
-import ChatListBox from './components/ChatListBox';
-import ChatMessageBox from './components/ChatMessageBox';
-import ChatMessageAnimator from './components/ChatMessageAnimator';
+import * as React from 'react'
+import {animateScroll, Element} from 'react-scroll'
+import * as ChatMessagesListActions from './chatMessagesListActions'
+import {RootState} from '../../reducers/index'
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {ChatMessage} from '../../models/ChatMessage'
+import ChatMessagesContent from './ChatMessagesContent'
+import ChatScrollArea from './components/ChatScrollArea'
 import TG = require('react-transition-group/TransitionGroup')
 const TransitionGroup: any = TG
+const SA: any = require('react-scrollbar')
+const ScrollArea = SA.default
 
 export namespace ChatMessagesList {
   export interface ConnectedState {
     messages: ChatMessage[]
+    messageLoading: boolean
+    chatTextFieldFocus: boolean
   }
 
   export interface ConnectedDispatch {
@@ -26,23 +30,25 @@ export namespace ChatMessagesList {
 
 class ChatMessagesList extends React.Component<ChatMessagesList.Props, {}> {
   render() {
-    const { messages } = this.props
-
-    const messagesList = (
-      <TransitionGroup>
-        {messages.map((message: ChatMessage, i: number) => (
-          <ChatMessageAnimator key={i}>
-            <ChatMessageBox message={message} />
-          </ChatMessageAnimator>
-        ))}
-      </TransitionGroup>
+    const { messages, chatTextFieldFocus, messageLoading } = this.props
+    const scrollAreaHeight = chatTextFieldFocus ? 50 : 100
+    return (
+      <ScrollArea
+        speed={0.8}
+        horizontal={false}
+        smoothScrolling={true}
+        style={{position: 'absolute', bottom: '100px', height: 'calc(100% - 100px)', width: '100%' }}
+      >
+        <ChatMessagesContent messageLoading={messageLoading} messages={messages} />
+      </ScrollArea>
     )
-    return <ChatListBox>{messagesList}</ChatListBox>
   }
 }
 
 const mapStateToProps = (state: RootState): ChatMessagesList.ConnectedState => ({
-  messages: state.chatMessages.messages
+  messages: state.chatServer.messages,
+  messageLoading: state.chatServer.chatMessageLoading,
+  chatTextFieldFocus: state.chatTextField.inputFocus
 })
 
 const mapDispatchToProps = (dispatch: any) => ({

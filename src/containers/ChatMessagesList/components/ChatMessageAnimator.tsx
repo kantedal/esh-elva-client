@@ -16,12 +16,12 @@ const ChatMessageAnimator: React.SFC<ChatMessageAnimatorProps> = ({in: inProp, c
   }
 
   const transitionStyles = {
-    entering: { opacity: 1, transform: 'translate(0px) scale(1)' },
+    entering: { opacity: 0, transform: 'translateY(-50px) scale(1)' },
     entered:  { opacity: 1, transform: 'translateY(0px) scale(1)' },
   }
 
   return (
-    <Transition in={inProp} duration={500} timeout={500}>
+    <Transition in={inProp} duration={1000} timeout={100}>
       {(state) => <div style={{...defaultStyle, ...transitionStyles[state]}}>{children}</div>}
     </Transition>
   )

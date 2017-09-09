@@ -17,14 +17,15 @@ const ChatHintText: React.SFC<ChatHintTextProps> = ({activeChat, inputValue, ...
 // language=SCSS
 const StyledChatHintText = styled(ChatHintText)`
   & {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px);
     text-align: ${({activeChat}) => activeChat ? 'left' : 'center'};
     font-family: Roboto,sans-serif;
-    padding-left: 13px;
-    padding-right: 13px;
+    padding-left: 40px;
+    padding-right: 40px;
     position: absolute;
-    color: #777;
-    font-size: 20px;
+    color: #555;
+    font-size: 16px;
+    font-weight: 200;
     pointer-events: none;
     transition-property: transform,opacity;
     transition-duration: 0.4s;

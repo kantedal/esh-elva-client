@@ -5,12 +5,13 @@ import { Router, Route, Switch } from 'react-router'
 import { createBrowserHistory } from 'history'
 import { configureStore } from './store'
 import { App } from './containers/App/App'
-import {startChatServer} from './SocketServer'
-
+import {startChatServer} from './chatServer'
 
 const store = configureStore()
 const history = createBrowserHistory()
-const chatServer = startChatServer(store)
+export let chatServer
+
+startChatServer(store).then((server) => chatServer = server)
 
 ReactDOM.render(
   <Provider store={store}>

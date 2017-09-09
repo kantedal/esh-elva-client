@@ -8,6 +8,7 @@ import {AppAnimatedBackground, AppChatContent, AppChatTextFieldWrapper, AppConte
 import ChatTextField from '../ChatTextField/ChatTextField'
 import ChatMessagesList from '../ChatMessagesList/ChatMessagesList'
 import AppHeader from './components/AppHeader'
+import * as style from './style.css'
 
 export namespace App {
   export interface Props extends RouteComponentProps<void> {
@@ -21,6 +22,14 @@ export namespace App {
   }
 }
 
+const mapStateToProps = (state: RootState) => ({
+  activeChat: state.chatTextField.activeChat,
+})
+
+const mapDispatchToProps = (dispatch: any) => ({
+  actions: bindActionCreators(TodoActions as any, dispatch)
+})
+
 @connect(mapStateToProps, mapDispatchToProps)
 export class App extends React.Component<App.Props, {}> {
 
@@ -29,7 +38,8 @@ export class App extends React.Component<App.Props, {}> {
     console.log(activeChat)
     return (
       <AppContent>
-        <AppAnimatedBackground />
+        <AppHeader activeChat={activeChat} />
+        {/*<AppAnimatedBackground />*/}
         <AppChatContent>
           <ChatMessagesList />
           {/*<div style={{position: 'absolute', width: '100%', height: '100%', top: 0}}>*/}
@@ -44,15 +54,4 @@ export class App extends React.Component<App.Props, {}> {
   }
 }
 
-function mapStateToProps(state: RootState) {
-  return {
-    activeChat: state.chatTextField.activeChat,
-    todos: state.todos
-  }
-}
 
-function mapDispatchToProps(dispatch: any) {
-  return {
-    actions: bindActionCreators(TodoActions as any, dispatch)
-  }
-}

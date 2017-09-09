@@ -19,7 +19,10 @@
       "react-transition-group",
       "moment",
       "node",
-      "socket.io-client"
+      "socket.io-client",
+      "react-scroll",
+      "react-scrollbar",
+      "firebase"
     ],
     "lib": [
       "es6",

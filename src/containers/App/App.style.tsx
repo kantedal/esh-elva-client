@@ -2,17 +2,9 @@ import styled, {keyframes} from 'styled-components'
 
 // language=SCSS
 const backgroundAnimation = keyframes`
-	0% {
-		opacity: 1;
-	}
-
-	50% {
-		opacity: 0;
-	}
-
-  100% {
-    opacity: 1;
-  }
+	0% { opacity: 1; }
+	50% { opacity: 0; }
+  100% { opacity: 1; }
 `
 
 // language=SCSS
@@ -30,12 +22,6 @@ export const AppAnimatedBackground = styled.div`
 export const AppContent = styled.div`
   & {
     position: absolute;
-    //background: linear-gradient(141deg, #0fb8ad 0%, #2cb5e8 100%);
-    //background: linear-gradient(141deg, rgb(252, 0, 255), rgb(0, 219, 222));
-    //background: linear-gradient(141deg, #1488CC, #2B32B2);
-    //background: linear-gradient(141deg, #314755, #26a0da); // BEST
-    //background: linear-gradient(141deg, #16222A, #3A6073);
-    //background: linear-gradient(141deg, #ffd89b, #19547b);
     background: linear-gradient(141deg, #e96443, #904e95);
     width: 100%;
     height: 100%;
@@ -44,20 +30,31 @@ export const AppContent = styled.div`
     -ms-font-smoothing: antialiased;
     font-smoothing: antialiased;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
   }
 `
 
+// language=SCSS
 export const AppChatContent = styled.div`
-  position: relative;
-  min-width: 230px;
-  max-width: 800px;
-  margin: 0 auto;
-  height: 100%;
+  & {
+    display: flex;
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    min-width: 230px;
+    margin: 0 auto;
+    margin-top: 80px;
+    height: calc(100% - 80px);
+  }
 `
 
+// language=SCSS
 export const AppChatTextFieldWrapper = styled.div`
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  & {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 `
 

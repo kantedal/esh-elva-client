@@ -5,22 +5,46 @@ interface AppHeaderProps extends React.HTMLProps<HTMLDivElement> {
   activeChat: boolean
 }
 
-const AppHeader: React.SFC<AppHeaderProps> = ({activeChat, ...props}) => {
-  return <div {...props}>Chatbot</div>
+const AppHeader: React.SFC<AppHeaderProps> = ({activeChat, className, ...props}) => {
+  console.log(className)
+  return (
+    <div className={className}>
+      <div className={className + ' text'}>
+        Elva Chatbot
+      </div>
+    </div>
+  )
 }
 
 // language=SCSS
 const StyledAppHeader = styled(AppHeader)`
   & {
-    position: relative;
-    top: ${(props) => !props.activeChat ? '50%' : '0%'};
-    transform: ${(props) => !props.activeChat ? 'translateY(-50%)' : 'translateY(0%)'};
-    transition: all 0.7s ease;
-    font-family: 'Sriracha', cursive;
-    font-size: 80px;
-    color: #fff;
+    top: 0px;
+    position: absolute;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: opacity 1.0s ease;
+    opacity: ${({activeChat}) => activeChat ? 1.0 : 0.0};
+    
+    .text {
+      display: flex;
+      justify-content: flex-start;
+      max-width: 800px;
+      min-width: 230px;
+      padding-left: 50px;
+      margin: auto;
+      background: transparent;
+      text-align: left;
+      font-size: 44px;
+      line-height: 80px;
+      text-transform: capitalize;
+      font-family: 'Abel', cursive;
+      color: #fff;
+    }
+   
   }
 `
 

@@ -1,0 +1,16 @@
+/*.scrollarea {*/
+  /*display: flex !important;*/
+  /*flex-direction: column !important;*/
+/*}*/
+
+/*.scrollarea-content {*/
+  /*margin-top: auto !important;*/
+/*}*/
+
+html, body {
+  min-height:100%;
+  height:100%;
+  width:100%;
+  overflow: hidden;
+  position: fixed;
+}

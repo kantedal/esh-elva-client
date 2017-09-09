@@ -13,10 +13,7 @@ const StyledChatListBox = styled(ChatListBox)`
   & {
     position: absolute;
     width: 100%;
-    padding-top: 100px;
-    height: calc(100% - 100px);
-    overflow-y: auto;
-    overflow-x: hidden;
+    padding-top: 50px;
   }
 `
 
