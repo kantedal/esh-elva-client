@@ -18,5 +18,7 @@ export function configureStore(initialState?: RootState): Store<RootState> {
     })
   }
 
+  navigator.geolocation.getCurrentPosition((pos) => console.log(pos))
+
   return store
 }

@@ -10,7 +10,8 @@ interface ChatMessageBoxProps extends React.HTMLProps<HTMLDivElement> {
 const ChatMessageBox: React.SFC<ChatMessageBoxProps> = ({message, children, ...props}) => {
   return (
     <div {...props}>
-      {message && message.message}
+      {message && !message.userMessage && message.message.translatedResponseMessage}
+      {message && message.userMessage && message.message}
       {!message && children}
     </div>
   )

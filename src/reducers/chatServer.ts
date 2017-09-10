@@ -18,7 +18,11 @@ const initialState: ChatServerState = {
 
 export default handleActions<ChatServerState, ChatMessage>({
   [CHAT_MESSAGE_RECEIVED]: (state: ChatServerState, action) => {
-    return {...state, messages: [...state.messages, action.payload], chatMessageLoading: false}
+    const messages = [...state.messages]
+    if (action.payload.message.translatedResponseMessage !== '') {
+      messages.push(action.payload)
+    }
+    return {...state, messages, chatMessageLoading: false}
   },
   [CHAT_MESSAGE_LOADING]: (state: ChatServerState, action) => {
     return {...state, chatMessageLoading: true}

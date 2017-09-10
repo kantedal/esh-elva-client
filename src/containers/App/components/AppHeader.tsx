@@ -10,6 +10,7 @@ const AppHeader: React.SFC<AppHeaderProps> = ({activeChat, className, ...props})
   return (
     <div className={className}>
       <div className={className + ' text'}>
+        <img src='../elva-white.png' height='50' width='50' style={{marginTop: '15px', marginRight: '10px'}}/>
         Elva Chatbot
       </div>
     </div>
@@ -28,7 +29,7 @@ const StyledAppHeader = styled(AppHeader)`
     background: rgba(255, 255, 255, 0.1);
     transition: opacity 1.0s ease;
     opacity: ${({activeChat}) => activeChat ? 1.0 : 0.0};
-    
+
     .text {
       display: flex;
       justify-content: flex-start;
@@ -44,7 +45,7 @@ const StyledAppHeader = styled(AppHeader)`
       font-family: 'Abel', cursive;
       color: #fff;
     }
-   
+
   }
 `
 
